@@ -9,6 +9,15 @@ def get_test():
     print(f"got name {name}")
     response = {}
 
+    if not name:
+        response["ERROR"] = "no name found, please send a name."
+    # Check if the user entered a number not a name
+    elif str(name).isdigit():
+        response["ERROR"] = "name can't be numeric."
+    # Now the user entered a valid name
+    else:
+        response["MESSAGE"] = f"Welcome {name} to our awesome platform!!"
+
     return jsonify(response)
 
 @app.route('/post/', methods=['POST'])
