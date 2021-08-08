@@ -26,6 +26,8 @@ def config_db():
         if conn is not None:
             conn.close()
             print('Connection closed')
+            return 'Connection Closed'
+    return db_version
 @app.route('/get/', methods=['GET'])
 def get_test():
     name = request.args.get("name",None)
