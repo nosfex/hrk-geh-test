@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import psycopg2
+from create_tables import create_tables
 from config import config
 app = Flask(__name__)
 @app.route("/")
@@ -26,6 +27,7 @@ def config_db():
         if conn is not None:
             conn.close()
             print('Connection closed')
+            create_tables()
             return 'Connection Closed '
     return db_version
 @app.route('/get/', methods=['GET'])
