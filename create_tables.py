@@ -5,36 +5,26 @@ from config import config
 def create_tables():
     commands = (
         """
-        CREATE TABLE vendors (
-            vendor_id SERIAL PRIMARY KEY,
-            vendor_name VARCHAR(255) NOT NULL
+        CREATE TABLE user (
+            user_id SERIAL PRIMARY KEY,
+            user_name VARCHAR(255) NOT NULL
         )
         """,
-        """ CREATE TABLE parts (
-                part_id SERIAL PRIMARY KEY,
-                part_name VARCHAR(255) NOT NULL
+        """ CREATE TABLE action (
+                action_id SERIAL PRIMARY KEY,
+                action_name VARCHAR(255) NOT NULL
                 )
         """,
         """
-        CREATE TABLE part_drawings (
-                part_id INTEGER PRIMARY KEY,
-                file_extension VARCHAR(5) NOT NULL,
-                drawing_data BYTEA NOT NULL,
-                FOREIGN KEY (part_id)
-                REFERENCES parts (part_id)
-                ON UPDATE CASCADE ON DELETE CASCADE
-        )
-        """,
-        """
-        CREATE TABLE vendor_parts (
-                vendor_id INTEGER NOT NULL,
-                part_id INTEGER NOT NULL,
-                PRIMARY KEY (vendor_id , part_id),
-                FOREIGN KEY (vendor_id)
-                    REFERENCES vendors (vendor_id)
+        CREATE TABLE user_actions (
+                user_id INTEGER NOT NULL,
+                action_id INTEGER NOT NULL,
+                PRIMARY KEY (user_id , action_id),
+                FOREIGN KEY (user_id)
+                    REFERENCES vendors (user_id)
                     ON UPDATE CASCADE ON DELETE CASCADE,
-                FOREIGN KEY (part_id)
-                    REFERENCES parts (part_id)
+                FOREIGN KEY (action_id)
+                    REFERENCES parts (action_id)
                     ON UPDATE CASCADE ON DELETE CASCADE
         )
         """)
