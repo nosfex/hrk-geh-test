@@ -54,7 +54,10 @@ def create_tables():
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+        return 'Tables failed'
     finally:
         if conn is not None:
             conn.close()
+        return 'Tables Created'
+    return 'Tables unknown status'
 

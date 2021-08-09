@@ -27,7 +27,7 @@ def config_db():
         if conn is not None:
             conn.close()
             print('Connection closed')
-            create_tables()
+         
             return 'Connection Closed '
     return db_version
 @app.route('/get/', methods=['GET'])
@@ -46,6 +46,11 @@ def get_test():
         response["MESSAGE"] = f"Welcome {name} to our awesome platform!!"
 
     return jsonify(response)
+
+@app.route('/add_tables/')
+def add_tables():
+    create_tables()
+    return 'Tables created'
 
 @app.route('/post/', methods=['POST'])
 def post_test():
